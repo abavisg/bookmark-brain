@@ -95,13 +95,40 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| (populated during roadmap creation) | | |
+| SET-04 | Phase 2: Data Layer + Processing Queue | Pending |
+| SAVE-01 | Phase 3: Bookmark Saving | Pending |
+| SAVE-02 | Phase 3: Bookmark Saving | Pending |
+| SAVE-03 | Phase 3: Bookmark Saving | Pending |
+| SAVE-04 | Phase 3: Bookmark Saving | Pending |
+| SAVE-05 | Phase 3: Bookmark Saving | Pending |
+| SET-01 | Phase 4: Settings + Onboarding | Pending |
+| SET-02 | Phase 4: Settings + Onboarding | Pending |
+| SET-03 | Phase 4: Settings + Onboarding | Pending |
+| AI-01 | Phase 5: AI Processing Pipeline | Pending |
+| AI-02 | Phase 5: AI Processing Pipeline | Pending |
+| AI-03 | Phase 5: AI Processing Pipeline | Pending |
+| AI-04 | Phase 5: AI Processing Pipeline | Pending |
+| AI-05 | Phase 5: AI Processing Pipeline | Pending |
+| LIB-01 | Phase 6: Library + Basic Search | Pending |
+| LIB-02 | Phase 6: Library + Basic Search | Pending |
+| LIB-03 | Phase 6: Library + Basic Search | Pending |
+| SRCH-01 | Phase 6: Library + Basic Search | Pending |
+| SRCH-03 | Phase 6: Library + Basic Search | Pending |
+| SRCH-04 | Phase 6: Library + Basic Search | Pending |
+| SRCH-02 | Phase 7: Natural Language Search | Pending |
+| SRCH-05 | Phase 7: Natural Language Search | Pending |
+| SRCH-06 | Phase 7: Natural Language Search | Pending |
+| SRCH-07 | Phase 8: AI-Synthesized Answers | Pending |
+| LIB-04 | Phase 9: Import Pipeline | Pending |
+| LIB-05 | Phase 9: Import Pipeline | Pending |
+| LIB-06 | Phase 9: Import Pipeline | Pending |
+| LIB-07 | Phase 10: Export + Polish | Pending |
 
 **Coverage:**
-- v1 requirements: 24 total
-- Mapped to phases: 0
-- Unmapped: 24
+- v1 requirements: 28 total
+- Mapped to phases: 28
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-03-06*
-*Last updated: 2026-03-06 after initial definition*
+*Last updated: 2026-03-06 after roadmap creation — traceability complete*
