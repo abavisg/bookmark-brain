@@ -17,6 +17,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': resolve(__dirname, 'src'),
+      'vitest-chrome': resolve(__dirname, 'node_modules/vitest-chrome/lib/index.esm.js'),
     },
   },
 })
