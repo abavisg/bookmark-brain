@@ -4,7 +4,9 @@ import App from './App'
 describe('Dashboard App', () => {
   it('renders header with "Bookmark Brain"', () => {
     render(<App />)
-    expect(screen.getByRole('heading', { name: /bookmark brain/i })).toBeTruthy()
+    expect(
+      screen.getByRole('heading', { name: /bookmark brain/i }),
+    ).toBeTruthy()
   })
 
   it('renders sidebar with navigation items', () => {

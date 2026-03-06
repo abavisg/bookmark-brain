@@ -16,5 +16,6 @@
     "paths": { "@/*": ["src/*"] },
     "types": ["chrome", "node"]
   },
-  "include": ["src/background/**/*", "src/shared/**/*", "vite.config.ts", "manifest.json"]
+  "include": ["src/background/**/*", "src/shared/**/*", "vite.config.ts", "manifest.json"],
+  "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx", "src/test/**/*"]
 }

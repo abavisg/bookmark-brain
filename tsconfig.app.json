@@ -16,5 +16,6 @@
     "paths": { "@/*": ["src/*"] },
     "types": ["chrome"]
   },
-  "include": ["src/popup/**/*", "src/dashboard/**/*", "src/content/**/*", "src/shared/**/*"]
+  "include": ["src/popup/**/*", "src/dashboard/**/*", "src/content/**/*", "src/shared/**/*"],
+  "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx", "src/test/**/*"]
 }

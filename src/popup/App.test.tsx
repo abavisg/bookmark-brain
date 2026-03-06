@@ -4,7 +4,9 @@ import App from './App'
 describe('Popup App', () => {
   it('renders "Bookmark Brain" heading', () => {
     render(<App />)
-    expect(screen.getByRole('heading', { name: /bookmark brain/i })).toBeTruthy()
+    expect(
+      screen.getByRole('heading', { name: /bookmark brain/i }),
+    ).toBeTruthy()
   })
 
   it('renders "Bookmark Brain is ready" text', () => {
