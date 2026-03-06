@@ -34,13 +34,17 @@
 **Requirements:** (none — pure infrastructure enabling all other phases)
 
 **Success Criteria** (what must be TRUE):
-  1. Developer can run `npm run dev` and load the extension in Chrome via `chrome://extensions` without errors
+  1. Developer can run `pnpm dev` and load the extension in Chrome via `chrome://extensions` without errors
   2. Popup, dashboard, content script, and service worker are all separate Vite bundles that load cleanly
   3. A typed `chrome.runtime.sendMessage` call from popup reaches the service worker and returns a typed response
   4. TypeScript compiles without errors across all four bundles
-  5. `npm run build` produces a distributable `dist/` folder with valid MV3 manifest
+  5. `pnpm build` produces a distributable `dist/` folder with valid MV3 manifest
 
-**Plans:** TBD
+**Plans:** 2 plans
+
+Plans:
+- [ ] 01-01-PLAN.md — Project init, build pipeline, entry points, typed message bus, test infrastructure
+- [ ] 01-02-PLAN.md — Brain icons, branded popup/dashboard UIs, shadcn/ui init, dark mode, visual checkpoint
 
 ---
 
@@ -215,7 +219,7 @@
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Project Scaffold | 0/? | Not started | - |
+| 1. Project Scaffold | 0/2 | Planned | - |
 | 2. Data Layer + Processing Queue | 0/? | Not started | - |
 | 3. Bookmark Saving | 0/? | Not started | - |
 | 4. Settings + Onboarding | 0/? | Not started | - |
@@ -266,4 +270,4 @@
 ---
 
 *Roadmap created: 2026-03-06*
-*Last updated: 2026-03-06 after initial roadmap creation*
+*Last updated: 2026-03-06 after Phase 1 planning*
