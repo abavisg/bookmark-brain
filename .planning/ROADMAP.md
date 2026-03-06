@@ -40,7 +40,7 @@
   4. TypeScript compiles without errors across all four bundles
   5. `pnpm build` produces a distributable `dist/` folder with valid MV3 manifest
 
-**Plans:** 2 plans
+**Plans:** 2/2 plans complete
 
 Plans:
 - [x] 01-01-PLAN.md — Project init, build pipeline, entry points, typed message bus, test infrastructure
@@ -219,7 +219,7 @@ Plans:
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Project Scaffold | 2/2 | Complete | 2026-03-06 |
+| 1. Project Scaffold | 2/2 | Complete    | 2026-03-06 |
 | 2. Data Layer + Processing Queue | 0/? | Not started | - |
 | 3. Bookmark Saving | 0/? | Not started | - |
 | 4. Settings + Onboarding | 0/? | Not started | - |
