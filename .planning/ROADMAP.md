@@ -10,7 +10,7 @@
 
 ## Phases
 
-- [ ] **Phase 1: Project Scaffold** — Vite + MV3 manifest + crxjs build pipeline + TypeScript skeleton with typed message bus
+- [x] **Phase 1: Project Scaffold** — Vite + MV3 manifest + crxjs build pipeline + TypeScript skeleton with typed message bus
 - [ ] **Phase 2: Data Layer + Processing Queue** — Dexie schema, IndexedDB storage, alarm-driven processing queue, local-first data guarantee
 - [ ] **Phase 3: Bookmark Saving** — One-click save, keyboard shortcut, visual confirmation, duplicate detection, bookmark card UI
 - [ ] **Phase 4: Settings + Onboarding** — API key entry, LLM provider selection, secure key storage, first-run onboarding flow
@@ -43,8 +43,8 @@
 **Plans:** 2 plans
 
 Plans:
-- [ ] 01-01-PLAN.md — Project init, build pipeline, entry points, typed message bus, test infrastructure
-- [ ] 01-02-PLAN.md — Brain icons, branded popup/dashboard UIs, shadcn/ui init, dark mode, visual checkpoint
+- [x] 01-01-PLAN.md — Project init, build pipeline, entry points, typed message bus, test infrastructure
+- [x] 01-02-PLAN.md — Brain icons, branded popup/dashboard UIs, shadcn/ui init, dark mode, visual checkpoint
 
 ---
 
@@ -219,7 +219,7 @@ Plans:
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Project Scaffold | 1/2 | In progress | - |
+| 1. Project Scaffold | 2/2 | Complete | 2026-03-06 |
 | 2. Data Layer + Processing Queue | 0/? | Not started | - |
 | 3. Bookmark Saving | 0/? | Not started | - |
 | 4. Settings + Onboarding | 0/? | Not started | - |
@@ -270,4 +270,4 @@ Plans:
 ---
 
 *Roadmap created: 2026-03-06*
-*Last updated: 2026-03-06 after 01-01 plan execution*
+*Last updated: 2026-03-06 after 01-02 plan execution — Phase 1 complete*

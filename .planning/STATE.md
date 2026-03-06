@@ -18,13 +18,13 @@
 
 **Milestone:** v1
 **Current Phase:** 01-project-scaffold
-**Current Plan:** 01 (complete)
-**Status:** Phase 1 Plan 1 complete — project scaffold built
+**Current Plan:** 02 (complete)
+**Status:** Phase 1 complete — all 2 plans done, ready for Phase 2
 
 **Progress Bar:**
 ```
-Phase:  [          ] 0/10 phases complete
-Plans:  [#         ] 1/1 plans complete (Phase 1)
+Phase:  [#         ] 1/10 phases complete
+Plans:  [##########] 2/2 plans complete (Phase 1)
 ```
 
 ---
@@ -33,7 +33,7 @@ Plans:  [#         ] 1/1 plans complete (Phase 1)
 
 | Phase | Name | Status |
 |-------|------|--------|
-| 1 | Project Scaffold | In progress (1/1 plans complete) |
+| 1 | Project Scaffold | Complete (2/2 plans) |
 | 2 | Data Layer + Processing Queue | Not started |
 | 3 | Bookmark Saving | Not started |
 | 4 | Settings + Onboarding | Not started |
@@ -48,14 +48,15 @@ Plans:  [#         ] 1/1 plans complete (Phase 1)
 
 ## Performance Metrics
 
-**Plans completed:** 1
+**Plans completed:** 2
 **Plans failed:** 0
 **Requirements delivered:** 0/28
-**Phases completed:** 0/10
+**Phases completed:** 1/10
 
 | Phase | Plan | Duration | Tasks | Files |
 |-------|------|----------|-------|-------|
 | 01 | 01 | 371s | 3/3 | 28 |
+| 01 | 02 | 771s | 3/3 | 16 |
 
 ---
 
@@ -68,6 +69,12 @@ Plans:  [#         ] 1/1 plans complete (Phase 1)
 - **Dexie.js is the only viable storage choice:** `chrome.storage.local` has no query API and a 10MB cap. Dexie wraps IndexedDB with migrations, reactive queries, and a sane API.
 - **Separate evictable content from permanent metadata:** `pageContent` table is evictable; `bookmarks` metadata is permanent. Prevents quota exhaustion from eating core data.
 - **Schema versioning from Phase 1:** Include `updatedAt` and `deviceId` fields from the start for v2 sync compatibility.
+
+### UI/Branding Decisions
+
+- **Manual shadcn/ui init over CLI:** CLI had alias resolution issues with crxjs project structure; manual components.json + utils.ts is more reliable
+- **Indigo brand color (#6366f1):** Used for brain icon background; sets consistent brand identity
+- **CSS Grid dashboard layout:** `grid-cols-[16rem_1fr] grid-rows-[4rem_1fr]` provides fixed sidebar with fluid main content
 
 ### Technology Choices
 
@@ -94,8 +101,8 @@ Plans:  [#         ] 1/1 plans complete (Phase 1)
 
 ## Session Continuity
 
-**Last action:** Completed 01-01-PLAN.md (2026-03-06)
-**Next action:** Run `/gsd:verify-work` for Phase 1 or continue to next phase
+**Last action:** Completed 01-02-PLAN.md (2026-03-06) — branded UI, icons, shadcn/ui setup
+**Next action:** Phase 1 complete. Proceed to Phase 2 (Data Layer + Processing Queue)
 
 **To resume after context loss:**
 1. Read `.planning/ROADMAP.md` for phase structure and success criteria
@@ -106,4 +113,4 @@ Plans:  [#         ] 1/1 plans complete (Phase 1)
 ---
 
 *State initialized: 2026-03-06*
-*Last updated: 2026-03-06 after completing 01-01 project scaffold plan*
+*Last updated: 2026-03-06 after completing 01-02 branded UI and shadcn/ui plan*
