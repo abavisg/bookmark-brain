@@ -1,3 +1,4 @@
+import { processQueueBatch } from '@/background/queue/processor'
 import type { AppMessage } from '@/shared/types/messages'
 
 chrome.runtime.onMessage.addListener(
@@ -22,6 +23,6 @@ chrome.runtime.onInstalled.addListener(() => {
 
 chrome.alarms.onAlarm.addListener((alarm) => {
   if (alarm.name === 'keepalive') {
-    // Service worker stays alive; process queue in future phases
+    processQueueBatch().catch(console.error)
   }
 })
