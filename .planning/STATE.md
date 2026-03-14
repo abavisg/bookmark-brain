@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 current_phase: 2
-current_plan: Not started
-status: planning
-last_updated: "2026-03-06T20:38:04.540Z"
+current_plan: 01-complete
+status: in-progress
+last_updated: "2026-03-14T16:50:00.000Z"
 progress:
   total_phases: 10
   completed_phases: 1
-  total_plans: 2
-  completed_plans: 2
+  total_plans: 3
+  completed_plans: 3
 ---
 
 # State: Bookmark Brain
@@ -33,13 +33,13 @@ progress:
 
 **Milestone:** v1
 **Current Phase:** 2
-**Current Plan:** Not started
-**Status:** Ready to plan
+**Current Plan:** 01 complete — awaiting plan 02
+**Status:** In progress
 
 **Progress Bar:**
 ```
 Phase:  [#         ] 1/10 phases complete
-Plans:  [##########] 2/2 plans complete (Phase 1)
+Plans:  [###       ] 3/? plans complete (Phase 1: 2/2, Phase 2: 1/?)
 ```
 
 ---
@@ -49,7 +49,7 @@ Plans:  [##########] 2/2 plans complete (Phase 1)
 | Phase | Name | Status |
 |-------|------|--------|
 | 1 | Project Scaffold | Complete (2/2 plans) |
-| 2 | Data Layer + Processing Queue | Not started |
+| 2 | Data Layer + Processing Queue | In progress (1/? plans) |
 | 3 | Bookmark Saving | Not started |
 | 4 | Settings + Onboarding | Not started |
 | 5 | AI Processing Pipeline | Not started |
@@ -63,15 +63,16 @@ Plans:  [##########] 2/2 plans complete (Phase 1)
 
 ## Performance Metrics
 
-**Plans completed:** 2
+**Plans completed:** 3
 **Plans failed:** 0
-**Requirements delivered:** 0/28
+**Requirements delivered:** 1/28 (SET-04)
 **Phases completed:** 1/10
 
 | Phase | Plan | Duration | Tasks | Files |
 |-------|------|----------|-------|-------|
 | 01 | 01 | 371s | 3/3 | 28 |
 | 01 | 02 | 771s | 3/3 | 16 |
+| 02 | 01 | ~600s | 2/2 | 11 |
 
 ---
 
@@ -84,6 +85,9 @@ Plans:  [##########] 2/2 plans complete (Phase 1)
 - **Dexie.js is the only viable storage choice:** `chrome.storage.local` has no query API and a 10MB cap. Dexie wraps IndexedDB with migrations, reactive queries, and a sane API.
 - **Separate evictable content from permanent metadata:** `pageContent` table is evictable; `bookmarks` metadata is permanent. Prevents quota exhaustion from eating core data.
 - **Schema versioning from Phase 1:** Include `updatedAt` and `deviceId` fields from the start for v2 sync compatibility.
+- **Dexie 4 EntityTable pattern:** Use `EntityTable<T, 'id'>` (not older `Table<T, TKey>`) — makes primary key optional on insert. All CRUD modules use optional `dbInstance` parameter for test injection.
+- **fake-indexeddb top-level import in db.ts:** ESM project cannot use dynamic `require()` (no node types in tsconfig.app.json). Importing fake-indexeddb statically is safe — the `db` singleton uses no options so fake-indexeddb never runs in production.
+- **globalThis.chrome in quota tests:** vitest-chrome exports `{ chrome }` as a named export; `import * as chrome` gives the module namespace, not the chrome object. Tests must use the globally-assigned `chrome` set via `Object.assign(global, chrome)` in setup.ts.
 
 ### UI/Branding Decisions
 
@@ -116,8 +120,8 @@ Plans:  [##########] 2/2 plans complete (Phase 1)
 
 ## Session Continuity
 
-**Last action:** Completed 01-02-PLAN.md (2026-03-06) — branded UI, icons, shadcn/ui setup
-**Next action:** Phase 1 complete. Proceed to Phase 2 (Data Layer + Processing Queue)
+**Last action:** Completed 02-01-PLAN.md (2026-03-14) — Dexie 4 data layer, CRUD modules, queue, quota monitor
+**Next action:** Continue Phase 2 with next plan (queue processor, alarm integration)
 
 **To resume after context loss:**
 1. Read `.planning/ROADMAP.md` for phase structure and success criteria
@@ -128,4 +132,4 @@ Plans:  [##########] 2/2 plans complete (Phase 1)
 ---
 
 *State initialized: 2026-03-06*
-*Last updated: 2026-03-06 after completing 01-02 branded UI and shadcn/ui plan*
+*Last updated: 2026-03-14 after completing 02-01 data layer and CRUD plan*
