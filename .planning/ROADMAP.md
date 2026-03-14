@@ -11,7 +11,7 @@
 ## Phases
 
 - [x] **Phase 1: Project Scaffold** — Vite + MV3 manifest + crxjs build pipeline + TypeScript skeleton with typed message bus
-- [ ] **Phase 2: Data Layer + Processing Queue** — Dexie schema, IndexedDB storage, alarm-driven processing queue, local-first data guarantee
+- [x] **Phase 2: Data Layer + Processing Queue** — Dexie schema, IndexedDB storage, alarm-driven processing queue, local-first data guarantee
 - [ ] **Phase 3: Bookmark Saving** — One-click save, keyboard shortcut, visual confirmation, duplicate detection, bookmark card UI
 - [ ] **Phase 4: Settings + Onboarding** — API key entry, LLM provider selection, secure key storage, first-run onboarding flow
 - [ ] **Phase 5: AI Processing Pipeline** — Content extraction, summarization, auto-tagging, entity extraction, graceful degradation, processing status
@@ -63,7 +63,11 @@ Plans:
   4. Storage quota monitoring is active — a warning state is observable when nearing the 70% threshold
   5. No server, no account, no network call is required for any data operation
 
-**Plans:** TBD
+**Plans:** 2/2 plans complete
+
+Plans:
+- [x] 02-01-PLAN.md — Dexie DB schema + typed entity interfaces + full CRUD layer + quota monitor + deviceId helper + unit tests
+- [x] 02-02-PLAN.md — Queue processor + stale-job recovery + alarm integration + message type extensions
 
 ---
 
@@ -220,7 +224,7 @@ Plans:
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Project Scaffold | 2/2 | Complete    | 2026-03-06 |
-| 2. Data Layer + Processing Queue | 0/? | Not started | - |
+| 2. Data Layer + Processing Queue | 0/2 | Not started | - |
 | 3. Bookmark Saving | 0/? | Not started | - |
 | 4. Settings + Onboarding | 0/? | Not started | - |
 | 5. AI Processing Pipeline | 0/? | Not started | - |
@@ -270,4 +274,4 @@ Plans:
 ---
 
 *Roadmap created: 2026-03-06*
-*Last updated: 2026-03-06 after 01-02 plan execution — Phase 1 complete*
+*Last updated: 2026-03-14 after Phase 2 planning — 2 plans created*

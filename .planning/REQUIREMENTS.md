@@ -48,7 +48,7 @@ Requirements for initial release. Each maps to roadmap phases.
 - [ ] **SET-01**: User can enter and manage their LLM API key on first run and in settings
 - [ ] **SET-02**: User can select their preferred LLM provider (OpenAI, Anthropic)
 - [ ] **SET-03**: User's API key is stored securely in the browser and never exposed to content scripts
-- [ ] **SET-04**: All bookmark data is stored locally in the browser (no server, no account required)
+- [x] **SET-04**: All bookmark data is stored locally in the browser (no server, no account required)
 
 ## v2 Requirements
 
@@ -95,7 +95,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| SET-04 | Phase 2: Data Layer + Processing Queue | Pending |
+| SET-04 | Phase 2: Data Layer + Processing Queue | Complete |
 | SAVE-01 | Phase 3: Bookmark Saving | Pending |
 | SAVE-02 | Phase 3: Bookmark Saving | Pending |
 | SAVE-03 | Phase 3: Bookmark Saving | Pending |

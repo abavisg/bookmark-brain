@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 current_phase: 2
-current_plan: 01-complete
+current_plan: 02-complete
 status: in-progress
-last_updated: "2026-03-14T16:50:00.000Z"
+last_updated: "2026-03-14T17:00:00.000Z"
 progress:
   total_phases: 10
   completed_phases: 1
-  total_plans: 3
-  completed_plans: 3
+  total_plans: 4
+  completed_plans: 4
 ---
 
 # State: Bookmark Brain
@@ -38,8 +38,8 @@ progress:
 
 **Progress Bar:**
 ```
-Phase:  [#         ] 1/10 phases complete
-Plans:  [###       ] 3/? plans complete (Phase 1: 2/2, Phase 2: 1/?)
+Phase:  [##        ] 2/10 phases complete
+Plans:  [####      ] 4/? plans complete (Phase 1: 2/2, Phase 2: 2/2)
 ```
 
 ---
@@ -49,7 +49,7 @@ Plans:  [###       ] 3/? plans complete (Phase 1: 2/2, Phase 2: 1/?)
 | Phase | Name | Status |
 |-------|------|--------|
 | 1 | Project Scaffold | Complete (2/2 plans) |
-| 2 | Data Layer + Processing Queue | In progress (1/? plans) |
+| 2 | Data Layer + Processing Queue | Complete (2/2 plans) |
 | 3 | Bookmark Saving | Not started |
 | 4 | Settings + Onboarding | Not started |
 | 5 | AI Processing Pipeline | Not started |
@@ -63,16 +63,17 @@ Plans:  [###       ] 3/? plans complete (Phase 1: 2/2, Phase 2: 1/?)
 
 ## Performance Metrics
 
-**Plans completed:** 3
+**Plans completed:** 4
 **Plans failed:** 0
 **Requirements delivered:** 1/28 (SET-04)
-**Phases completed:** 1/10
+**Phases completed:** 2/10
 
 | Phase | Plan | Duration | Tasks | Files |
 |-------|------|----------|-------|-------|
 | 01 | 01 | 371s | 3/3 | 28 |
 | 01 | 02 | 771s | 3/3 | 16 |
 | 02 | 01 | ~600s | 2/2 | 11 |
+| 02 | 02 | ~600s | 2/2 | 4 |
 
 ---
 
@@ -88,6 +89,7 @@ Plans:  [###       ] 3/? plans complete (Phase 1: 2/2, Phase 2: 1/?)
 - **Dexie 4 EntityTable pattern:** Use `EntityTable<T, 'id'>` (not older `Table<T, TKey>`) — makes primary key optional on insert. All CRUD modules use optional `dbInstance` parameter for test injection.
 - **fake-indexeddb top-level import in db.ts:** ESM project cannot use dynamic `require()` (no node types in tsconfig.app.json). Importing fake-indexeddb statically is safe — the `db` singleton uses no options so fake-indexeddb never runs in production.
 - **globalThis.chrome in quota tests:** vitest-chrome exports `{ chrome }` as a named export; `import * as chrome` gives the module namespace, not the chrome object. Tests must use the globally-assigned `chrome` set via `Object.assign(global, chrome)` in setup.ts.
+- **processJob injectable via jobProcessor param:** ESM module boundaries prevent vi.spyOn from intercepting same-module function calls. processQueueBatch accepts optional `jobProcessor` param for test injection — defaults to real processJob stub in production. Phase 5 replaces processJob body directly.
 
 ### UI/Branding Decisions
 
@@ -120,8 +122,8 @@ Plans:  [###       ] 3/? plans complete (Phase 1: 2/2, Phase 2: 1/?)
 
 ## Session Continuity
 
-**Last action:** Completed 02-01-PLAN.md (2026-03-14) — Dexie 4 data layer, CRUD modules, queue, quota monitor
-**Next action:** Continue Phase 2 with next plan (queue processor, alarm integration)
+**Last action:** Completed 02-02-PLAN.md (2026-03-14) — queue processor with stale-job recovery, alarm integration, extended message types
+**Next action:** Begin Phase 3 (bookmark saving — content script, SAVE_BOOKMARK handler, addBookmark call)
 
 **To resume after context loss:**
 1. Read `.planning/ROADMAP.md` for phase structure and success criteria
@@ -132,4 +134,4 @@ Plans:  [###       ] 3/? plans complete (Phase 1: 2/2, Phase 2: 1/?)
 ---
 
 *State initialized: 2026-03-06*
-*Last updated: 2026-03-14 after completing 02-01 data layer and CRUD plan*
+*Last updated: 2026-03-14 after completing 02-02 queue processor, alarm integration, message types*
