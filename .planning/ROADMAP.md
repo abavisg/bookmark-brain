@@ -86,7 +86,12 @@ Plans:
   4. Each saved bookmark displays as a card with title, URL, favicon, and date saved in the popup
   5. A bookmark is saved (title + URL) even when the page cannot be read (chrome:// pages, PDFs)
 
-**Plans:** TBD
+**Plans:** 3 plans
+
+Plans:
+- [ ] 03-00-PLAN.md — Wave 0: test scaffolds for all 5 requirements (failing tests first)
+- [ ] 03-01-PLAN.md — Backend: DeletedBookmark type + Dexie v2 migration + logDeletedBookmark + handleSaveBookmark + keyboard shortcut
+- [ ] 03-02-PLAN.md — Popup UI: useCurrentTab hook + BookmarkCard + save/unsave toggle with Sonner toasts + visual checkpoint
 
 ---
 
@@ -224,8 +229,8 @@ Plans:
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Project Scaffold | 2/2 | Complete    | 2026-03-06 |
-| 2. Data Layer + Processing Queue | 0/2 | Not started | - |
-| 3. Bookmark Saving | 0/? | Not started | - |
+| 2. Data Layer + Processing Queue | 2/2 | Complete | 2026-03-14 |
+| 3. Bookmark Saving | 0/3 | Not started | - |
 | 4. Settings + Onboarding | 0/? | Not started | - |
 | 5. AI Processing Pipeline | 0/? | Not started | - |
 | 6. Library + Basic Search | 0/? | Not started | - |
@@ -274,4 +279,4 @@ Plans:
 ---
 
 *Roadmap created: 2026-03-06*
-*Last updated: 2026-03-14 after Phase 2 planning — 2 plans created*
+*Last updated: 2026-03-16 after Phase 3 planning — 3 plans created*
