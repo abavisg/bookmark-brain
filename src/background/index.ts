@@ -22,6 +22,26 @@ chrome.runtime.onMessage.addListener(
           .catch((err) => sendResponse({ error: String(err) }))
         return true // keep channel open for async
       }
+      case 'UNSAVE_BOOKMARK': {
+        const { url } = message.payload
+        handleUnsaveBookmark({ url })
+          .then(sendResponse)
+          .catch((err) => sendResponse({ error: String(err) }))
+        return true // keep channel open for async
+      }
+      case 'GET_BOOKMARK_STATUS': {
+        const { url } = message.payload
+        getBookmarkByUrl(url)
+          .then((bookmark) => {
+            if (bookmark) {
+              sendResponse({ bookmarkId: bookmark.id, alreadyExists: true })
+            } else {
+              sendResponse(undefined)
+            }
+          })
+          .catch((err) => sendResponse({ error: String(err) }))
+        return true // keep channel open for async
+      }
       default:
         break
     }

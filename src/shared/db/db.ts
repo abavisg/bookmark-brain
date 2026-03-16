@@ -1,7 +1,12 @@
 import Dexie, { type EntityTable } from 'dexie'
 // fake-indexeddb is a devDependency used only via createTestDb() — never called in production paths
 import { IDBFactory, IDBKeyRange } from 'fake-indexeddb'
-import type { Bookmark, DeletedBookmark, PageContent, ProcessingJob } from '@/shared/types/db'
+import type {
+  Bookmark,
+  DeletedBookmark,
+  PageContent,
+  ProcessingJob,
+} from '@/shared/types/db'
 
 export class BookmarkBrainDB extends Dexie {
   bookmarks!: EntityTable<Bookmark, 'id'>

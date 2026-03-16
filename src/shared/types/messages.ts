@@ -7,6 +7,8 @@ export type AppMessage =
       type: 'SAVE_BOOKMARK'
       payload: { url: string; title: string; favicon?: string }
     }
+  | { type: 'UNSAVE_BOOKMARK'; payload: { url: string } }
+  | { type: 'GET_BOOKMARK_STATUS'; payload: { url: string } }
   | { type: 'PROCESSING_STATUS'; payload: { bookmarkId: number } }
 
 export type AppResponse<T extends AppMessage> = T extends { type: 'PING' }
@@ -15,6 +17,10 @@ export type AppResponse<T extends AppMessage> = T extends { type: 'PING' }
     ? { version: string }
     : T extends { type: 'SAVE_BOOKMARK' }
       ? { bookmarkId: number; alreadyExists: boolean }
-      : T extends { type: 'PROCESSING_STATUS' }
-        ? { status: BookmarkStatus }
-        : never
+      : T extends { type: 'UNSAVE_BOOKMARK' }
+        ? { bookmarkId: number; alreadyExists: boolean }
+        : T extends { type: 'GET_BOOKMARK_STATUS' }
+          ? { bookmarkId: number; alreadyExists: boolean } | undefined
+          : T extends { type: 'PROCESSING_STATUS' }
+            ? { status: BookmarkStatus }
+            : never
