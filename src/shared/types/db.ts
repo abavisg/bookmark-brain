@@ -36,3 +36,18 @@ export interface ProcessingJob {
   lastError?: string // stored on failure — used by requeueFailedApiKeyJobs to detect missing-key errors
   createdAt: number // epoch ms
 }
+
+export interface DeletedBookmark {
+  id: number // auto-increment primary key on deletedBookmarks table
+  url: string
+  title: string
+  favicon?: string
+  summary?: string
+  tags: string[]
+  entities?: string[]
+  status: BookmarkStatus
+  createdAt: number // epoch ms — original bookmark createdAt (preserved)
+  updatedAt: number // epoch ms
+  deviceId: string
+  deletedAt: number // epoch ms — when the bookmark was deleted
+}

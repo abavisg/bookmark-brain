@@ -6,6 +6,7 @@ export {
   updateBookmark,
 } from './bookmarks'
 export { BookmarkBrainDB, createTestDb, db } from './db'
+export { logDeletedBookmark } from './deletedBookmarks'
 export { getOrCreateDeviceId } from './deviceId'
 export {
   evictPageContent,
