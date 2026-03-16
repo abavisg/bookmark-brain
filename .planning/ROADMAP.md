@@ -13,7 +13,7 @@
 - [x] **Phase 1: Project Scaffold** — Vite + MV3 manifest + crxjs build pipeline + TypeScript skeleton with typed message bus
 - [x] **Phase 2: Data Layer + Processing Queue** — Dexie schema, IndexedDB storage, alarm-driven processing queue, local-first data guarantee
 - [x] **Phase 3: Bookmark Saving** — One-click save, keyboard shortcut, visual confirmation, duplicate detection, bookmark card UI
-- [ ] **Phase 4: Settings + Onboarding** — API key entry, LLM provider selection, secure key storage, first-run onboarding flow
+- [x] **Phase 4: Settings + Onboarding** — API key entry, LLM provider selection, secure key storage, first-run onboarding flow (completed 2026-03-16)
 - [ ] **Phase 5: AI Processing Pipeline** — Content extraction, summarization, auto-tagging, entity extraction, graceful degradation, processing status
 - [ ] **Phase 6: Library + Basic Search** — Full-page dashboard browse, full-text search, tag/date filtering, delete/archive, open URL
 - [ ] **Phase 7: Natural Language Search** — Popup quick search and dashboard NL search powered by LLM query expansion
@@ -109,7 +109,7 @@ Plans:
   3. The API key is readable from the service worker but is not accessible from popup or content script contexts
   4. User can update or remove their API key at any time from settings without reinstalling the extension
 
-**Plans:** 2/3 plans executed
+**Plans:** 3/3 plans complete
 
 Plans:
 - [ ] 04-01-PLAN.md — Service worker settings handlers: message types, CRUD, API key validation
@@ -236,7 +236,7 @@ Plans:
 | 1. Project Scaffold | 2/2 | Complete    | 2026-03-06 |
 | 2. Data Layer + Processing Queue | 2/2 | Complete | 2026-03-14 |
 | 3. Bookmark Saving | 3/3 | Complete | 2026-03-16 |
-| 4. Settings + Onboarding | 2/3 | In Progress|  |
+| 4. Settings + Onboarding | 3/3 | Complete   | 2026-03-16 |
 | 5. AI Processing Pipeline | 0/? | Not started | - |
 | 6. Library + Basic Search | 0/? | Not started | - |
 | 7. Natural Language Search | 0/? | Not started | - |

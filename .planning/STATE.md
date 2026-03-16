@@ -3,7 +3,7 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 current_phase: 4
-current_plan: 2 of 3 (04-02 complete)
+current_plan: 3 of 3 (04-03 task 1 complete, awaiting human-verify checkpoint)
 status: in_progress
 last_updated: "2026-03-16T20:28:29.616Z"
 progress:
@@ -33,13 +33,13 @@ progress:
 
 **Milestone:** v1
 **Current Phase:** 4
-**Current Plan:** 2 of 3 (04-02 complete)
+**Current Plan:** 3 of 3 (04-03 task 1 complete, awaiting human-verify checkpoint)
 **Status:** In progress
 
 **Progress Bar:**
 ```
 Phase:  [###       ] 3/10 phases complete
-Plans:  [█████████ ] 9/? plans complete (Phase 1: 2/2, Phase 2: 2/2, Phase 3: 3/3, Phase 4: 2/3)
+Plans:  [█████████ ] 9/? plans complete (Phase 1: 2/2, Phase 2: 2/2, Phase 3: 3/3, Phase 4: 3/3 pending verify)
 ```
 
 ---
@@ -51,7 +51,7 @@ Plans:  [█████████ ] 9/? plans complete (Phase 1: 2/2, Phase 2
 | 1 | Project Scaffold | Complete (2/2 plans) |
 | 2 | Data Layer + Processing Queue | Complete (2/2 plans) |
 | 3 | Bookmark Saving | Complete (3/3 plans) |
-| 4 | Settings + Onboarding | In progress (2/3 plans) |
+| 4 | Settings + Onboarding | In progress (3/3 plans — awaiting human-verify) |
 | 5 | AI Processing Pipeline | Not started |
 | 6 | Library + Basic Search | Not started |
 | 7 | Natural Language Search | Not started |
@@ -79,6 +79,7 @@ Plans:  [█████████ ] 9/? plans complete (Phase 1: 2/2, Phase 2
 | 03 | 02 | ~30min | 2/2 | 7 |
 | 04 | 01 | 138s | 2/2 | 4 |
 | 04 | 02 | 162s | 2/2 | 8 |
+| 04 | 03 | ~360s | 1/2 (checkpoint) | 5 |
 
 ## Accumulated Context
 
@@ -107,6 +108,9 @@ Plans:  [█████████ ] 9/? plans complete (Phase 1: 2/2, Phase 2
 - **SettingsPanel never pre-populates API key (Phase 4, Plan 02):** API key input is always empty on load — `hasApiKey=true` from GET_SETTINGS shows masked "API key saved" status + Clear button. Raw key never sent to UI (security boundary).
 - **Hash-based dashboard routing (Phase 4, Plan 02):** Dashboard uses lazy `useState` initializer reading `window.location.hash` once at mount to set initial tab. Opening `dashboard.html#settings` shows Settings directly without navigation.
 - **Radix Select over native select (Phase 4, Plan 02):** Used @radix-ui/react-select for visual consistency with shadcn/ui design system across the extension.
+- **useHasApiKey reads only bbHasApiKey boolean (Phase 4, Plan 03):** Hook reads only the boolean flag, never `bbApiKeySecret`. Popup security boundary enforced by hook API design.
+- **Soft gate UX pattern (Phase 4, Plan 03):** Onboarding banner shows guidance without blocking save functionality. Users can save bookmarks with or without API key configured.
+- **chrome.storage.onChanged for reactive popup updates (Phase 4, Plan 03):** useHasApiKey subscribes to storage changes so banner disappears in real-time when API key is saved in dashboard — no popup reload required.
 
 ### UI/Branding Decisions
 
@@ -139,8 +143,8 @@ Plans:  [█████████ ] 9/? plans complete (Phase 1: 2/2, Phase 2
 
 ## Session Continuity
 
-**Last action:** Completed 04-02-PLAN.md (2026-03-16) — dashboard Settings UI with SettingsPanel (provider select, API key password input, Ollama base URL, validate/clear), hash-based tab routing, 78 tests green.
-**Next action:** Execute Phase 4 Plan 03 (onboarding flow)
+**Last action:** Completed 04-03 Task 1 (2026-03-16) — popup onboarding banner, gear icon, useHasApiKey hook; 85 tests green. Paused at checkpoint:human-verify Task 2.
+**Next action:** Human verification of complete settings + onboarding flow in Chrome. After approval, Phase 5 (AI Processing Pipeline) can begin.
 
 **To resume after context loss:**
 1. Read `.planning/ROADMAP.md` for phase structure and success criteria
