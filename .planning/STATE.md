@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 current_phase: 4
-current_plan: "1 of 3"
+current_plan: 2 of 3 (04-02 complete)
 status: in_progress
-last_updated: "2026-03-16T20:22:22.941Z"
+last_updated: "2026-03-16T20:28:29.616Z"
 progress:
   total_phases: 10
   completed_phases: 3
   total_plans: 10
-  completed_plans: 8
+  completed_plans: 9
 ---
 
 # State: Bookmark Brain
@@ -33,13 +33,13 @@ progress:
 
 **Milestone:** v1
 **Current Phase:** 4
-**Current Plan:** 1 of 3 (04-01 complete)
+**Current Plan:** 2 of 3 (04-02 complete)
 **Status:** In progress
 
 **Progress Bar:**
 ```
 Phase:  [###       ] 3/10 phases complete
-Plans:  [████████  ] 8/? plans complete (Phase 1: 2/2, Phase 2: 2/2, Phase 3: 3/3, Phase 4: 1/3)
+Plans:  [█████████ ] 9/? plans complete (Phase 1: 2/2, Phase 2: 2/2, Phase 3: 3/3, Phase 4: 2/3)
 ```
 
 ---
@@ -51,7 +51,7 @@ Plans:  [████████  ] 8/? plans complete (Phase 1: 2/2, Phase 2: 
 | 1 | Project Scaffold | Complete (2/2 plans) |
 | 2 | Data Layer + Processing Queue | Complete (2/2 plans) |
 | 3 | Bookmark Saving | Complete (3/3 plans) |
-| 4 | Settings + Onboarding | In progress (1/3 plans) |
+| 4 | Settings + Onboarding | In progress (2/3 plans) |
 | 5 | AI Processing Pipeline | Not started |
 | 6 | Library + Basic Search | Not started |
 | 7 | Natural Language Search | Not started |
@@ -63,7 +63,7 @@ Plans:  [████████  ] 8/? plans complete (Phase 1: 2/2, Phase 2: 
 
 ## Performance Metrics
 
-**Plans completed:** 8
+**Plans completed:** 9
 **Plans failed:** 0
 **Requirements delivered:** 12/28 (SET-01, SET-02, SET-03, SET-04, SAVE-01, SAVE-02, SAVE-03, SAVE-04, SAVE-05, plus SAVE-01/02/04 reconfirmed in popup)
 **Phases completed:** 3/10
@@ -78,6 +78,7 @@ Plans:  [████████  ] 8/? plans complete (Phase 1: 2/2, Phase 2: 
 | 03 | 01 | 357s | 2/2 | 8 |
 | 03 | 02 | ~30min | 2/2 | 7 |
 | 04 | 01 | 138s | 2/2 | 4 |
+| 04 | 02 | 162s | 2/2 | 8 |
 
 ## Accumulated Context
 
@@ -103,6 +104,9 @@ Plans:  [████████  ] 8/? plans complete (Phase 1: 2/2, Phase 2: 
 - **Chrome storage promise wrappers (Phase 4, Plan 01):** storageGet/storageSet/storageRemove wrap callback-style chrome.storage.local API for clean async/await usage in MV3 service worker settings handlers.
 - **bbApiKeySecret security boundary (Phase 4, Plan 01):** Raw API key stored under `bbApiKeySecret` key in chrome.storage.local. This constant is never referenced in `handleGetSettings` — security boundary enforced by code structure (SET-03).
 - **Ollama hasApiKey=true without key (Phase 4, Plan 01):** Ollama provider sets `bbHasApiKey: true` without requiring an API key since local Ollama instances require no authentication.
+- **SettingsPanel never pre-populates API key (Phase 4, Plan 02):** API key input is always empty on load — `hasApiKey=true` from GET_SETTINGS shows masked "API key saved" status + Clear button. Raw key never sent to UI (security boundary).
+- **Hash-based dashboard routing (Phase 4, Plan 02):** Dashboard uses lazy `useState` initializer reading `window.location.hash` once at mount to set initial tab. Opening `dashboard.html#settings` shows Settings directly without navigation.
+- **Radix Select over native select (Phase 4, Plan 02):** Used @radix-ui/react-select for visual consistency with shadcn/ui design system across the extension.
 
 ### UI/Branding Decisions
 
@@ -135,8 +139,8 @@ Plans:  [████████  ] 8/? plans complete (Phase 1: 2/2, Phase 2: 
 
 ## Session Continuity
 
-**Last action:** Completed 04-01-PLAN.md (2026-03-16) — settings backend with SAVE_SETTINGS/GET_SETTINGS/VALIDATE_API_KEY message handlers, chrome.storage persistence, API key security boundary. 12 tests green.
-**Next action:** Execute Phase 4 Plan 02 (dashboard UI for settings)
+**Last action:** Completed 04-02-PLAN.md (2026-03-16) — dashboard Settings UI with SettingsPanel (provider select, API key password input, Ollama base URL, validate/clear), hash-based tab routing, 78 tests green.
+**Next action:** Execute Phase 4 Plan 03 (onboarding flow)
 
 **To resume after context loss:**
 1. Read `.planning/ROADMAP.md` for phase structure and success criteria
@@ -147,4 +151,4 @@ Plans:  [████████  ] 8/? plans complete (Phase 1: 2/2, Phase 2: 
 ---
 
 *State initialized: 2026-03-06*
-*Last updated: 2026-03-16 after completing 04-01 auto tasks — settings backend implemented, all 68 tests GREEN*
+*Last updated: 2026-03-16 after completing 04-02 auto tasks — dashboard settings UI implemented, all 78 tests GREEN*
