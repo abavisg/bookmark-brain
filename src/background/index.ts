@@ -3,6 +3,11 @@ import {
   handleSaveBookmark,
   handleUnsaveBookmark,
 } from '@/background/saveBookmark'
+import {
+  handleGetSettings,
+  handleSaveSettings,
+  handleValidateApiKey,
+} from '@/background/settings/settingsHandlers'
 import { getBookmarkByUrl } from '@/shared/db/bookmarks'
 import type { AppMessage } from '@/shared/types/messages'
 
@@ -41,6 +46,24 @@ chrome.runtime.onMessage.addListener(
           })
           .catch((err) => sendResponse({ error: String(err) }))
         return true // keep channel open for async
+      }
+      case 'SAVE_SETTINGS': {
+        handleSaveSettings(message.payload)
+          .then(sendResponse)
+          .catch((err) => sendResponse({ error: String(err) }))
+        return true
+      }
+      case 'GET_SETTINGS': {
+        handleGetSettings()
+          .then(sendResponse)
+          .catch((err) => sendResponse({ error: String(err) }))
+        return true
+      }
+      case 'VALIDATE_API_KEY': {
+        handleValidateApiKey(message.payload)
+          .then(sendResponse)
+          .catch((err) => sendResponse({ error: String(err) }))
+        return true
       }
       default:
         break
