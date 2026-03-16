@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-current_phase: 2
-current_plan: 02-complete
+current_phase: 3
+current_plan: 00-complete
 status: in-progress
-last_updated: "2026-03-14T17:00:00.000Z"
+last_updated: "2026-03-16T14:11:40.685Z"
 progress:
   total_phases: 10
-  completed_phases: 1
-  total_plans: 4
-  completed_plans: 4
+  completed_phases: 2
+  total_plans: 7
+  completed_plans: 5
 ---
 
 # State: Bookmark Brain
@@ -32,14 +32,14 @@ progress:
 ## Current Position
 
 **Milestone:** v1
-**Current Phase:** 2
-**Current Plan:** 01 complete — awaiting plan 02
+**Current Phase:** 3
+**Current Plan:** 03-00 complete — awaiting plan 03-01
 **Status:** In progress
 
 **Progress Bar:**
 ```
 Phase:  [##        ] 2/10 phases complete
-Plans:  [####      ] 4/? plans complete (Phase 1: 2/2, Phase 2: 2/2)
+Plans:  [#####     ] 5/? plans complete (Phase 1: 2/2, Phase 2: 2/2, Phase 3: 1/3)
 ```
 
 ---
@@ -50,7 +50,7 @@ Plans:  [####      ] 4/? plans complete (Phase 1: 2/2, Phase 2: 2/2)
 |-------|------|--------|
 | 1 | Project Scaffold | Complete (2/2 plans) |
 | 2 | Data Layer + Processing Queue | Complete (2/2 plans) |
-| 3 | Bookmark Saving | Not started |
+| 3 | Bookmark Saving | In progress (1/3 plans) |
 | 4 | Settings + Onboarding | Not started |
 | 5 | AI Processing Pipeline | Not started |
 | 6 | Library + Basic Search | Not started |
@@ -63,7 +63,7 @@ Plans:  [####      ] 4/? plans complete (Phase 1: 2/2, Phase 2: 2/2)
 
 ## Performance Metrics
 
-**Plans completed:** 4
+**Plans completed:** 5
 **Plans failed:** 0
 **Requirements delivered:** 1/28 (SET-04)
 **Phases completed:** 2/10
@@ -74,8 +74,7 @@ Plans:  [####      ] 4/? plans complete (Phase 1: 2/2, Phase 2: 2/2)
 | 01 | 02 | 771s | 3/3 | 16 |
 | 02 | 01 | ~600s | 2/2 | 11 |
 | 02 | 02 | ~600s | 2/2 | 4 |
-
----
+| 03 | 00 | 170s | 3/3 | 3 |
 
 ## Accumulated Context
 
@@ -90,6 +89,9 @@ Plans:  [####      ] 4/? plans complete (Phase 1: 2/2, Phase 2: 2/2)
 - **fake-indexeddb top-level import in db.ts:** ESM project cannot use dynamic `require()` (no node types in tsconfig.app.json). Importing fake-indexeddb statically is safe — the `db` singleton uses no options so fake-indexeddb never runs in production.
 - **globalThis.chrome in quota tests:** vitest-chrome exports `{ chrome }` as a named export; `import * as chrome` gives the module namespace, not the chrome object. Tests must use the globally-assigned `chrome` set via `Object.assign(global, chrome)` in setup.ts.
 - **processJob injectable via jobProcessor param:** ESM module boundaries prevent vi.spyOn from intercepting same-module function calls. processQueueBatch accepts optional `jobProcessor` param for test injection — defaults to real processJob stub in production. Phase 5 replaces processJob body directly.
+- **TDD Wave 0 RED import strategy (Phase 3):** Test files import from non-existing modules — RED state is guaranteed at import resolution time. No need for stubs or `throw new Error` inside tests. Mirrors the "contract before code" TDD discipline.
+- **handleSaveBookmark signature with optional dbInstance (Phase 3):** Follows the established addBookmark/deleteBookmark injection pattern. Tests pass testDb; production uses default db singleton.
+- **App.test.tsx placeholder tests replaced (Phase 3):** Old tests tested a placeholder App.tsx that Plan 02 will replace entirely. Keeping them would create confusing mixed state.
 
 ### UI/Branding Decisions
 
@@ -122,8 +124,8 @@ Plans:  [####      ] 4/? plans complete (Phase 1: 2/2, Phase 2: 2/2)
 
 ## Session Continuity
 
-**Last action:** Completed 02-02-PLAN.md (2026-03-14) — queue processor with stale-job recovery, alarm integration, extended message types
-**Next action:** Begin Phase 3 (bookmark saving — content script, SAVE_BOOKMARK handler, addBookmark call)
+**Last action:** Completed 03-00-PLAN.md (2026-03-16) — Wave 0 TDD scaffolds: 3 test files with 16 failing tests for all bookmark-saving requirements
+**Next action:** Execute 03-01-PLAN.md (Wave 1 — implement handleSaveBookmark, Dexie v2 migration, logDeletedBookmark)
 
 **To resume after context loss:**
 1. Read `.planning/ROADMAP.md` for phase structure and success criteria
@@ -134,4 +136,4 @@ Plans:  [####      ] 4/? plans complete (Phase 1: 2/2, Phase 2: 2/2)
 ---
 
 *State initialized: 2026-03-06*
-*Last updated: 2026-03-14 after completing 02-02 queue processor, alarm integration, message types*
+*Last updated: 2026-03-16 after completing 03-00 Wave 0 test scaffolds (16 RED tests across 3 files)*
