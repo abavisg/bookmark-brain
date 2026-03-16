@@ -109,7 +109,12 @@ Plans:
   3. The API key is readable from the service worker but is not accessible from popup or content script contexts
   4. User can update or remove their API key at any time from settings without reinstalling the extension
 
-**Plans:** TBD
+**Plans:** 3 plans
+
+Plans:
+- [ ] 04-01-PLAN.md — Service worker settings handlers: message types, CRUD, API key validation
+- [ ] 04-02-PLAN.md — Dashboard settings UI: SettingsPanel, tab routing, shadcn/ui components
+- [ ] 04-03-PLAN.md — Popup onboarding: gear icon, hasApiKey banner, chrome.storage.onChanged reactivity
 
 ---
 
@@ -231,7 +236,7 @@ Plans:
 | 1. Project Scaffold | 2/2 | Complete    | 2026-03-06 |
 | 2. Data Layer + Processing Queue | 2/2 | Complete | 2026-03-14 |
 | 3. Bookmark Saving | 3/3 | Complete | 2026-03-16 |
-| 4. Settings + Onboarding | 0/? | Not started | - |
+| 4. Settings + Onboarding | 0/3 | Planned | - |
 | 5. AI Processing Pipeline | 0/? | Not started | - |
 | 6. Library + Basic Search | 0/? | Not started | - |
 | 7. Natural Language Search | 0/? | Not started | - |
@@ -279,4 +284,4 @@ Plans:
 ---
 
 *Roadmap created: 2026-03-06*
-*Last updated: 2026-03-16 after Phase 3 planning — 3 plans created*
+*Last updated: 2026-03-16 after Phase 4 planning — 3 plans created*
