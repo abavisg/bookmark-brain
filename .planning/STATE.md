@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 current_phase: 3
-current_plan: 03-02 in progress — awaiting human-verify checkpoint
+current_plan: 03-02 complete — ready for 03 phase completion or next phase
 status: executing
-last_updated: "2026-03-16T14:20:52.034Z"
+last_updated: "2026-03-16T15:00:00.000Z"
 progress:
   total_phases: 10
   completed_phases: 2
   total_plans: 7
-  completed_plans: 6
+  completed_plans: 7
 ---
 
 # State: Bookmark Brain
@@ -33,13 +33,13 @@ progress:
 
 **Milestone:** v1
 **Current Phase:** 3
-**Current Plan:** 03-02 in progress — awaiting human-verify checkpoint
+**Current Plan:** 03-02 complete — Phase 3 all plans done
 **Status:** In progress
 
 **Progress Bar:**
 ```
-Phase:  [##        ] 2/10 phases complete
-Plans:  [██████    ] 6/? plans complete (Phase 1: 2/2, Phase 2: 2/2, Phase 3: 2/3)
+Phase:  [###       ] 3/10 phases complete
+Plans:  [███████   ] 7/? plans complete (Phase 1: 2/2, Phase 2: 2/2, Phase 3: 3/3)
 ```
 
 ---
@@ -50,7 +50,7 @@ Plans:  [██████    ] 6/? plans complete (Phase 1: 2/2, Phase 2: 2/2,
 |-------|------|--------|
 | 1 | Project Scaffold | Complete (2/2 plans) |
 | 2 | Data Layer + Processing Queue | Complete (2/2 plans) |
-| 3 | Bookmark Saving | In progress (2/3 plans) |
+| 3 | Bookmark Saving | Complete (3/3 plans) |
 | 4 | Settings + Onboarding | Not started |
 | 5 | AI Processing Pipeline | Not started |
 | 6 | Library + Basic Search | Not started |
@@ -63,10 +63,10 @@ Plans:  [██████    ] 6/? plans complete (Phase 1: 2/2, Phase 2: 2/2,
 
 ## Performance Metrics
 
-**Plans completed:** 6
+**Plans completed:** 7
 **Plans failed:** 0
-**Requirements delivered:** 5/28 (SET-04, SAVE-01, SAVE-02, SAVE-03, SAVE-04)
-**Phases completed:** 2/10
+**Requirements delivered:** 9/28 (SET-04, SAVE-01, SAVE-02, SAVE-03, SAVE-04, SAVE-05, plus SAVE-01/02/04 reconfirmed in popup)
+**Phases completed:** 3/10
 
 | Phase | Plan | Duration | Tasks | Files |
 |-------|------|----------|-------|-------|
@@ -76,6 +76,7 @@ Plans:  [██████    ] 6/? plans complete (Phase 1: 2/2, Phase 2: 2/2,
 | 02 | 02 | ~600s | 2/2 | 4 |
 | 03 | 00 | 170s | 3/3 | 3 |
 | 03 | 01 | 357s | 2/2 | 8 |
+| 03 | 02 | ~30min | 2/2 | 7 |
 
 ## Accumulated Context
 
@@ -95,6 +96,9 @@ Plans:  [██████    ] 6/? plans complete (Phase 1: 2/2, Phase 2: 2/2,
 - **App.test.tsx placeholder tests replaced (Phase 3):** Old tests tested a placeholder App.tsx that Plan 02 will replace entirely. Keeping them would create confusing mixed state.
 - **chrome.action mock in test setup (Phase 3, Plan 01):** vitest-chrome@0.1.0 only provides browserAction (MV2). MV3 action API is absent, so setup.ts manually mocks chrome.action with vi.fn() for all badge/icon methods.
 - **chrome.storage.local callbacks stubbed in setup.ts (Phase 3, Plan 01):** getOrCreateDeviceId() uses callback-style chrome.storage.local.get(). Without stub, vi.fn() never calls the callback, causing 5s test timeouts. Stubbing auto-calls callback with empty object.
+- **useLiveQuery for reactive popup state (Phase 3, Plan 02):** useLiveQuery from dexie-react-hooks eliminates manual polling — Dexie reactivity propagates IndexedDB writes from service worker to popup automatically.
+- **Pending toast pattern (Phase 3, Plan 02):** Service worker writes pendingToast to chrome.storage.local; popup reads and clears on mount. Decouples keyboard shortcut trigger timing from popup open timing.
+- **Sonner Toaster in popup root index.tsx (Phase 3, Plan 02):** Toaster placed at popup root render level, not inside App.tsx, so it persists across App re-renders triggered by useLiveQuery state changes.
 
 ### UI/Branding Decisions
 
@@ -127,8 +131,8 @@ Plans:  [██████    ] 6/? plans complete (Phase 1: 2/2, Phase 2: 2/2,
 
 ## Session Continuity
 
-**Last action:** Completed 03-02-PLAN.md auto tasks (2026-03-16) — popup UI with useCurrentTab, BookmarkCard, App.tsx save/unsave toggle, Sonner toasts, GET_BOOKMARK_STATUS + UNSAVE_BOOKMARK messages. All 56 tests GREEN. Awaiting human-verify checkpoint.
-**Next action:** After checkpoint approval — create 03-02-SUMMARY.md and update STATE.md/ROADMAP.md
+**Last action:** Completed 03-02-PLAN.md (2026-03-16) — popup UI with useCurrentTab, BookmarkCard, App.tsx save/unsave toggle, Sonner toasts, pending toast recovery. All 8 manual checkpoint tests verified. Phase 3 complete.
+**Next action:** Begin Phase 4 (Settings + Onboarding) planning
 
 **To resume after context loss:**
 1. Read `.planning/ROADMAP.md` for phase structure and success criteria

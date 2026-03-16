@@ -13,7 +13,7 @@ Requirements for initial release. Each maps to roadmap phases.
 - [x] **SAVE-02**: User sees visual confirmation (badge/toast) that a bookmark was saved
 - [x] **SAVE-03**: User can save a bookmark via keyboard shortcut
 - [x] **SAVE-04**: User is alerted when saving a page that is already bookmarked (duplicate detection)
-- [ ] **SAVE-05**: Bookmark card displays title, URL, favicon, and date saved
+- [x] **SAVE-05**: Bookmark card displays title, URL, favicon, and date saved
 
 ### AI Processing
 
@@ -100,7 +100,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | SAVE-02 | Phase 3: Bookmark Saving | Complete |
 | SAVE-03 | Phase 3: Bookmark Saving | Complete |
 | SAVE-04 | Phase 3: Bookmark Saving | Complete |
-| SAVE-05 | Phase 3: Bookmark Saving | Pending |
+| SAVE-05 | Phase 3: Bookmark Saving | Complete |
 | SET-01 | Phase 4: Settings + Onboarding | Pending |
 | SET-02 | Phase 4: Settings + Onboarding | Pending |
 | SET-03 | Phase 4: Settings + Onboarding | Pending |

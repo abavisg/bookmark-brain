@@ -12,7 +12,7 @@
 
 - [x] **Phase 1: Project Scaffold** — Vite + MV3 manifest + crxjs build pipeline + TypeScript skeleton with typed message bus
 - [x] **Phase 2: Data Layer + Processing Queue** — Dexie schema, IndexedDB storage, alarm-driven processing queue, local-first data guarantee
-- [ ] **Phase 3: Bookmark Saving** — One-click save, keyboard shortcut, visual confirmation, duplicate detection, bookmark card UI
+- [x] **Phase 3: Bookmark Saving** — One-click save, keyboard shortcut, visual confirmation, duplicate detection, bookmark card UI
 - [ ] **Phase 4: Settings + Onboarding** — API key entry, LLM provider selection, secure key storage, first-run onboarding flow
 - [ ] **Phase 5: AI Processing Pipeline** — Content extraction, summarization, auto-tagging, entity extraction, graceful degradation, processing status
 - [ ] **Phase 6: Library + Basic Search** — Full-page dashboard browse, full-text search, tag/date filtering, delete/archive, open URL
@@ -86,12 +86,12 @@ Plans:
   4. Each saved bookmark displays as a card with title, URL, favicon, and date saved in the popup
   5. A bookmark is saved (title + URL) even when the page cannot be read (chrome:// pages, PDFs)
 
-**Plans:** 3 plans
+**Plans:** 3/3 plans complete
 
 Plans:
-- [ ] 03-00-PLAN.md — Wave 0: test scaffolds for all 5 requirements (failing tests first)
-- [ ] 03-01-PLAN.md — Backend: DeletedBookmark type + Dexie v2 migration + logDeletedBookmark + handleSaveBookmark + keyboard shortcut
-- [ ] 03-02-PLAN.md — Popup UI: useCurrentTab hook + BookmarkCard + save/unsave toggle with Sonner toasts + visual checkpoint
+- [x] 03-00-PLAN.md — Wave 0: test scaffolds for all 5 requirements (failing tests first)
+- [x] 03-01-PLAN.md — Backend: DeletedBookmark type + Dexie v2 migration + logDeletedBookmark + handleSaveBookmark + keyboard shortcut
+- [x] 03-02-PLAN.md — Popup UI: useCurrentTab hook + BookmarkCard + save/unsave toggle with Sonner toasts + visual checkpoint
 
 ---
 
@@ -230,7 +230,7 @@ Plans:
 |-------|----------------|--------|-----------|
 | 1. Project Scaffold | 2/2 | Complete    | 2026-03-06 |
 | 2. Data Layer + Processing Queue | 2/2 | Complete | 2026-03-14 |
-| 3. Bookmark Saving | 0/3 | Not started | - |
+| 3. Bookmark Saving | 3/3 | Complete | 2026-03-16 |
 | 4. Settings + Onboarding | 0/? | Not started | - |
 | 5. AI Processing Pipeline | 0/? | Not started | - |
 | 6. Library + Basic Search | 0/? | Not started | - |
