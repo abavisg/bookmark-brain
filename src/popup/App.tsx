@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
+import { Settings } from 'lucide-react'
 import { toast } from 'sonner'
 import { BookmarkCard } from '@/popup/components/BookmarkCard'
 import { useCurrentTab } from '@/popup/hooks/useCurrentTab'
+import { useHasApiKey } from '@/popup/hooks/useHasApiKey'
 import { sendMessage } from '@/shared/messages/bus'
 import type { Bookmark } from '@/shared/types/db'
 
@@ -43,6 +45,7 @@ function FooterLink({
 
 export default function App() {
   const tab = useCurrentTab()
+  const hasApiKey = useHasApiKey()
   const isRestricted = !tab?.url || !tab.url.startsWith('http')
 
   const [savedBookmark, setSavedBookmark] = useState<Bookmark | null>(null)
@@ -105,6 +108,12 @@ export default function App() {
     })
   }
 
+  const handleOpenSettings = () => {
+    chrome.tabs.create({
+      url: chrome.runtime.getURL('src/dashboard/index.html') + '#settings',
+    })
+  }
+
   const footer = (
     <footer className="pt-3 border-t border-gray-100 dark:border-gray-800">
       <FooterLink onClick={handleViewDashboard}>
@@ -137,7 +146,31 @@ export default function App() {
         <h1 className="text-base font-semibold text-gray-900 dark:text-white">
           Bookmark Brain
         </h1>
+        <button
+          type="button"
+          onClick={handleOpenSettings}
+          className="ml-auto p-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+          aria-label="Settings"
+        >
+          <Settings size={18} />
+        </button>
       </header>
+
+      {/* Onboarding banner */}
+      {!hasApiKey && (
+        <div className="rounded-lg bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 px-3 py-2 text-sm">
+          <span className="text-amber-800 dark:text-amber-200">
+            Add API key to enable AI features
+          </span>
+          <button
+            type="button"
+            onClick={handleOpenSettings}
+            className="ml-2 text-indigo-600 dark:text-indigo-400 hover:underline font-medium"
+          >
+            Set up now &rarr;
+          </button>
+        </div>
+      )}
 
       {/* Main content */}
       <main className="flex-1">
