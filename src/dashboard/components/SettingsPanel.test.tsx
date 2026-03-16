@@ -137,15 +137,4 @@ describe('SettingsPanel', () => {
     })
   })
 
-  it('shows Eye/EyeOff toggle button for API key input', async () => {
-    render(<SettingsPanel />)
-
-    await waitFor(() => {
-      expect(screen.getByLabelText(/show api key/i)).toBeTruthy()
-    })
-
-    fireEvent.click(screen.getByLabelText(/show api key/i))
-
-    expect(screen.getByLabelText(/hide api key/i)).toBeTruthy()
-  })
 })

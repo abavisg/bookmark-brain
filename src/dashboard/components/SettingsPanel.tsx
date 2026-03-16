@@ -1,4 +1,3 @@
-import { Eye, EyeOff } from 'lucide-react'
 import { useEffect, useState } from 'react'
 
 import { Button } from '@/components/ui/button'
@@ -16,11 +15,14 @@ type Provider = 'openai' | 'anthropic' | 'ollama'
 type ValidationStatus = 'idle' | 'validating' | 'valid' | 'invalid'
 
 export default function SettingsPanel() {
+  const [savedProvider, setSavedProvider] = useState<Provider>('openai')
+  const [savedOllamaBaseUrl, setSavedOllamaBaseUrl] = useState('http://localhost:11434')
+  const [savedHasApiKey, setSavedHasApiKey] = useState(false)
+
   const [provider, setProvider] = useState<Provider>('openai')
   const [apiKey, setApiKey] = useState('')
   const [ollamaBaseUrl, setOllamaBaseUrl] = useState('http://localhost:11434')
   const [hasApiKey, setHasApiKey] = useState(false)
-  const [showKey, setShowKey] = useState(false)
   const [validationStatus, setValidationStatus] = useState<ValidationStatus>('idle')
   const [validationError, setValidationError] = useState('')
   const [saving, setSaving] = useState(false)
@@ -28,16 +30,27 @@ export default function SettingsPanel() {
   useEffect(() => {
     sendMessage({ type: 'GET_SETTINGS' }).then((response) => {
       if (response) {
-        if (response.provider === 'openai' || response.provider === 'anthropic' || response.provider === 'ollama') {
-          setProvider(response.provider)
-        }
+        const p: Provider =
+          response.provider === 'openai' || response.provider === 'anthropic' || response.provider === 'ollama'
+            ? response.provider
+            : 'openai'
+        const url = response.ollamaBaseUrl ?? 'http://localhost:11434'
+        setProvider(p)
+        setSavedProvider(p)
         setHasApiKey(response.hasApiKey)
-        if (response.ollamaBaseUrl) {
-          setOllamaBaseUrl(response.ollamaBaseUrl)
-        }
+        setSavedHasApiKey(response.hasApiKey)
+        setOllamaBaseUrl(url)
+        setSavedOllamaBaseUrl(url)
       }
     })
   }, [])
+
+  const isDirty = (() => {
+    if (provider !== savedProvider) return true
+    if (apiKey !== '') return true
+    if (provider === 'ollama' && ollamaBaseUrl !== savedOllamaBaseUrl) return true
+    return false
+  })()
 
   const handleSave = async () => {
     setSaving(true)
@@ -51,6 +64,9 @@ export default function SettingsPanel() {
         },
       })
       if (response?.success) {
+        setSavedProvider(provider)
+        setSavedOllamaBaseUrl(ollamaBaseUrl)
+        setSavedHasApiKey(true)
         setHasApiKey(true)
         setApiKey('')
       }
@@ -93,9 +109,11 @@ export default function SettingsPanel() {
         },
       })
       if (response?.success) {
+        setSavedHasApiKey(false)
         setHasApiKey(false)
         setApiKey('')
         setOllamaBaseUrl('http://localhost:11434')
+        setSavedOllamaBaseUrl('http://localhost:11434')
         setValidationStatus('idle')
         setValidationError('')
       }
@@ -106,7 +124,7 @@ export default function SettingsPanel() {
 
   const isSaveDisabled =
     saving ||
-    !provider ||
+    !isDirty ||
     (provider !== 'ollama' && !apiKey && !hasApiKey)
 
   const isValidateDisabled =
@@ -151,8 +169,8 @@ export default function SettingsPanel() {
             API Key
           </label>
 
-          {hasApiKey && apiKey === '' ? (
-            <div className="flex items-center gap-3">
+          {savedHasApiKey && apiKey === '' ? (
+            <div className="flex items-center gap-3 mb-2">
               <span className="text-sm text-green-600 dark:text-green-400 flex items-center gap-1">
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -169,23 +187,13 @@ export default function SettingsPanel() {
             </div>
           ) : null}
 
-          <div className="relative mt-2">
-            <Input
-              type={showKey ? 'text' : 'password'}
-              value={apiKey}
-              onChange={(e) => setApiKey(e.target.value)}
-              placeholder={apiKeyPlaceholder}
-              className="pr-10"
-            />
-            <button
-              type="button"
-              onClick={() => setShowKey((prev) => !prev)}
-              className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
-              aria-label={showKey ? 'Hide API key' : 'Show API key'}
-            >
-              {showKey ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-            </button>
-          </div>
+          <textarea
+            value={apiKey}
+            onChange={(e) => setApiKey(e.target.value)}
+            placeholder={apiKeyPlaceholder}
+            rows={3}
+            className="flex w-full rounded-md border border-gray-300 dark:border-gray-600 bg-transparent px-3 py-2 text-sm text-gray-900 dark:text-gray-100 shadow-sm transition-colors placeholder:text-gray-400 dark:placeholder:text-gray-500 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-indigo-500 disabled:cursor-not-allowed disabled:opacity-50 resize-none"
+          />
         </div>
       )}
 

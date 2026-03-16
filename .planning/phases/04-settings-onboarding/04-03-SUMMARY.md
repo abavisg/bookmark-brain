@@ -58,7 +58,7 @@ completed: 2026-03-16
 - **Duration:** ~6 min
 - **Started:** 2026-03-16T20:30:14Z
 - **Completed:** 2026-03-16T20:32:10Z
-- **Tasks:** 1/2 complete (Task 2 is checkpoint:human-verify — awaiting manual verification)
+- **Tasks:** 2/2 complete (Task 2 human-verify checkpoint approved)
 - **Files modified:** 5
 
 ## Accomplishments
@@ -73,8 +73,9 @@ completed: 2026-03-16
 Each task was committed atomically:
 
 1. **Task 1: Create useHasApiKey hook, add gear icon and banner to popup, update tests** - `06f1d7a` (feat)
+2. **Task 2: Verify settings flow end-to-end in Chrome** - human-verify checkpoint (approved by user)
 
-**Plan metadata:** TBD (docs: complete plan — after human verification)
+**Plan metadata:** `44fc787` (docs: complete popup onboarding plan)
 
 ## Files Created/Modified
 - `src/popup/hooks/useHasApiKey.ts` - Hook reading bbHasApiKey with chrome.storage.onChanged listener
@@ -112,8 +113,8 @@ None beyond the missing dev dependency (handled via Rule 3).
 None — no external service configuration required.
 
 ## Next Phase Readiness
-- Phase 4 complete (pending human verification of checkpoint Task 2)
-- After human verification confirms end-to-end flow works in Chrome, Phase 5 (AI Processing Pipeline) can begin
+- Phase 4 complete — all 3 plans (01 backend, 02 dashboard UI, 03 popup) human-verified in Chrome
+- Phase 5 (AI Processing Pipeline) ready to begin — settings backend delivers API key and provider to service worker, security boundary intact
 - useHasApiKey hook available for Phase 5 if AI feature gating needed
 
 ---
