@@ -49,6 +49,8 @@ Requirements for initial release. Each maps to roadmap phases.
 - [x] **SET-02**: User can select their preferred LLM provider (OpenAI, Anthropic)
 - [x] **SET-03**: User's API key is stored securely in the browser and never exposed to content scripts
 - [x] **SET-04**: All bookmark data is stored locally in the browser (no server, no account required)
+- [x] **ONB-01**: First-time users without an API key see an onboarding banner in the popup guiding them to settings
+- [x] **ONB-02**: The onboarding banner reacts in real-time to storage changes and disappears once an API key is saved
 
 ## v2 Requirements
 
@@ -104,6 +106,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | SET-01 | Phase 4: Settings + Onboarding | Complete |
 | SET-02 | Phase 4: Settings + Onboarding | Complete |
 | SET-03 | Phase 4: Settings + Onboarding | Complete |
+| ONB-01 | Phase 4: Settings + Onboarding | Complete |
+| ONB-02 | Phase 4: Settings + Onboarding | Complete |
 | AI-01 | Phase 5: AI Processing Pipeline | Pending |
 | AI-02 | Phase 5: AI Processing Pipeline | Pending |
 | AI-03 | Phase 5: AI Processing Pipeline | Pending |
