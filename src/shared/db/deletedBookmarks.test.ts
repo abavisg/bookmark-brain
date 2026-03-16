@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it } from 'vitest'
+import { type BookmarkBrainDB, createTestDb } from '@/shared/db'
 import { deleteBookmark } from '@/shared/db/bookmarks'
 import { logDeletedBookmark } from '@/shared/db/deletedBookmarks'
-import { type BookmarkBrainDB, createTestDb } from '@/shared/db'
 import type { Bookmark } from '@/shared/types/db'
 
 let testDb: BookmarkBrainDB
@@ -63,7 +63,9 @@ describe('logDeletedBookmark', () => {
 
   it('preserves the original createdAt value (not overwritten with current time)', async () => {
     const originalCreatedAt = Date.now() - 100_000 // 100 seconds ago
-    const bookmark = await insertBookmark(testDb, { createdAt: originalCreatedAt })
+    const bookmark = await insertBookmark(testDb, {
+      createdAt: originalCreatedAt,
+    })
 
     await logDeletedBookmark(bookmark, testDb)
 

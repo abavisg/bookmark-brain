@@ -1,5 +1,9 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { handleSaveBookmark, showSaveBadge, showUnsaveBadge } from '@/background/saveBookmark'
+import {
+  handleSaveBookmark,
+  showSaveBadge,
+  showUnsaveBadge,
+} from '@/background/saveBookmark'
 import { type BookmarkBrainDB, createTestDb } from '@/shared/db'
 
 vi.mock('@/shared/db/quota', () => ({
@@ -54,15 +58,23 @@ describe('handleSaveBookmark', () => {
   })
 
   it('SAVE-02: sets badge text to ✓ and badge background to green after save', async () => {
-    await handleSaveBookmark({ url: 'https://example.com', title: 'Example' }, testDb)
+    await handleSaveBookmark(
+      { url: 'https://example.com', title: 'Example' },
+      testDb,
+    )
 
     expect(chrome.action.setBadgeText).toHaveBeenCalledWith({ text: '✓' })
-    expect(chrome.action.setBadgeBackgroundColor).toHaveBeenCalledWith({ color: '#22c55e' })
+    expect(chrome.action.setBadgeBackgroundColor).toHaveBeenCalledWith({
+      color: '#22c55e',
+    })
   })
 
   it('returns gracefully (no error, no DB write) for chrome:// URLs', async () => {
     await expect(
-      handleSaveBookmark({ url: 'chrome://settings', title: 'Settings' }, testDb),
+      handleSaveBookmark(
+        { url: 'chrome://settings', title: 'Settings' },
+        testDb,
+      ),
     ).resolves.not.toThrow()
 
     const all = await testDb.bookmarks.toArray()
@@ -74,7 +86,10 @@ describe('keyboard shortcut handler', () => {
   it('SAVE-03: save-bookmark command triggers save logic and badge', async () => {
     // Simulate a tab
     vi.mocked(chrome.tabs.query).mockImplementation(
-      (_: chrome.tabs.QueryInfo, callback: (tabs: chrome.tabs.Tab[]) => void) => {
+      (
+        _: chrome.tabs.QueryInfo,
+        callback: (tabs: chrome.tabs.Tab[]) => void,
+      ) => {
         callback([
           {
             id: 1,
@@ -103,10 +118,10 @@ describe('keyboard shortcut handler', () => {
     })
 
     expect(tab).toBeDefined()
-    if (tab?.url && tab.url.startsWith('chrome://')) return
+    if (tab?.url?.startsWith('chrome://')) return
 
     const result = await handleSaveBookmark(
-      { url: tab!.url!, title: tab!.title ?? '' },
+      { url: tab?.url ?? '', title: tab?.title ?? '' },
       testDb,
     )
 
@@ -119,7 +134,9 @@ describe('showSaveBadge / showUnsaveBadge', () => {
   it('showSaveBadge sets green ✓ badge', async () => {
     await showSaveBadge()
     expect(chrome.action.setBadgeText).toHaveBeenCalledWith({ text: '✓' })
-    expect(chrome.action.setBadgeBackgroundColor).toHaveBeenCalledWith({ color: '#22c55e' })
+    expect(chrome.action.setBadgeBackgroundColor).toHaveBeenCalledWith({
+      color: '#22c55e',
+    })
   })
 
   it('showUnsaveBadge sets empty badge text', async () => {
