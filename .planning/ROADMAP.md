@@ -109,7 +109,7 @@ Plans:
   3. The API key is readable from the service worker but is not accessible from popup or content script contexts
   4. User can update or remove their API key at any time from settings without reinstalling the extension
 
-**Plans:** 3 plans
+**Plans:** 1/3 plans executed
 
 Plans:
 - [ ] 04-01-PLAN.md — Service worker settings handlers: message types, CRUD, API key validation
@@ -236,7 +236,7 @@ Plans:
 | 1. Project Scaffold | 2/2 | Complete    | 2026-03-06 |
 | 2. Data Layer + Processing Queue | 2/2 | Complete | 2026-03-14 |
 | 3. Bookmark Saving | 3/3 | Complete | 2026-03-16 |
-| 4. Settings + Onboarding | 0/3 | Planned | - |
+| 4. Settings + Onboarding | 1/3 | In Progress|  |
 | 5. AI Processing Pipeline | 0/? | Not started | - |
 | 6. Library + Basic Search | 0/? | Not started | - |
 | 7. Natural Language Search | 0/? | Not started | - |

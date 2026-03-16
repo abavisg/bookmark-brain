@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 current_phase: 4
-current_plan: Not started
-status: planning
-last_updated: "2026-03-16T17:07:47.389Z"
+current_plan: "1 of 3"
+status: in_progress
+last_updated: "2026-03-16T20:22:22.941Z"
 progress:
   total_phases: 10
   completed_phases: 3
-  total_plans: 7
-  completed_plans: 7
+  total_plans: 10
+  completed_plans: 8
 ---
 
 # State: Bookmark Brain
@@ -33,13 +33,13 @@ progress:
 
 **Milestone:** v1
 **Current Phase:** 4
-**Current Plan:** Not started
-**Status:** Ready to plan
+**Current Plan:** 1 of 3 (04-01 complete)
+**Status:** In progress
 
 **Progress Bar:**
 ```
 Phase:  [###       ] 3/10 phases complete
-Plans:  [███████   ] 7/? plans complete (Phase 1: 2/2, Phase 2: 2/2, Phase 3: 3/3)
+Plans:  [████████  ] 8/? plans complete (Phase 1: 2/2, Phase 2: 2/2, Phase 3: 3/3, Phase 4: 1/3)
 ```
 
 ---
@@ -51,7 +51,7 @@ Plans:  [███████   ] 7/? plans complete (Phase 1: 2/2, Phase 2: 2/
 | 1 | Project Scaffold | Complete (2/2 plans) |
 | 2 | Data Layer + Processing Queue | Complete (2/2 plans) |
 | 3 | Bookmark Saving | Complete (3/3 plans) |
-| 4 | Settings + Onboarding | Not started |
+| 4 | Settings + Onboarding | In progress (1/3 plans) |
 | 5 | AI Processing Pipeline | Not started |
 | 6 | Library + Basic Search | Not started |
 | 7 | Natural Language Search | Not started |
@@ -63,9 +63,9 @@ Plans:  [███████   ] 7/? plans complete (Phase 1: 2/2, Phase 2: 2/
 
 ## Performance Metrics
 
-**Plans completed:** 7
+**Plans completed:** 8
 **Plans failed:** 0
-**Requirements delivered:** 9/28 (SET-04, SAVE-01, SAVE-02, SAVE-03, SAVE-04, SAVE-05, plus SAVE-01/02/04 reconfirmed in popup)
+**Requirements delivered:** 12/28 (SET-01, SET-02, SET-03, SET-04, SAVE-01, SAVE-02, SAVE-03, SAVE-04, SAVE-05, plus SAVE-01/02/04 reconfirmed in popup)
 **Phases completed:** 3/10
 
 | Phase | Plan | Duration | Tasks | Files |
@@ -77,6 +77,7 @@ Plans:  [███████   ] 7/? plans complete (Phase 1: 2/2, Phase 2: 2/
 | 03 | 00 | 170s | 3/3 | 3 |
 | 03 | 01 | 357s | 2/2 | 8 |
 | 03 | 02 | ~30min | 2/2 | 7 |
+| 04 | 01 | 138s | 2/2 | 4 |
 
 ## Accumulated Context
 
@@ -99,6 +100,9 @@ Plans:  [███████   ] 7/? plans complete (Phase 1: 2/2, Phase 2: 2/
 - **useLiveQuery for reactive popup state (Phase 3, Plan 02):** useLiveQuery from dexie-react-hooks eliminates manual polling — Dexie reactivity propagates IndexedDB writes from service worker to popup automatically.
 - **Pending toast pattern (Phase 3, Plan 02):** Service worker writes pendingToast to chrome.storage.local; popup reads and clears on mount. Decouples keyboard shortcut trigger timing from popup open timing.
 - **Sonner Toaster in popup root index.tsx (Phase 3, Plan 02):** Toaster placed at popup root render level, not inside App.tsx, so it persists across App re-renders triggered by useLiveQuery state changes.
+- **Chrome storage promise wrappers (Phase 4, Plan 01):** storageGet/storageSet/storageRemove wrap callback-style chrome.storage.local API for clean async/await usage in MV3 service worker settings handlers.
+- **bbApiKeySecret security boundary (Phase 4, Plan 01):** Raw API key stored under `bbApiKeySecret` key in chrome.storage.local. This constant is never referenced in `handleGetSettings` — security boundary enforced by code structure (SET-03).
+- **Ollama hasApiKey=true without key (Phase 4, Plan 01):** Ollama provider sets `bbHasApiKey: true` without requiring an API key since local Ollama instances require no authentication.
 
 ### UI/Branding Decisions
 
@@ -131,8 +135,8 @@ Plans:  [███████   ] 7/? plans complete (Phase 1: 2/2, Phase 2: 2/
 
 ## Session Continuity
 
-**Last action:** Completed 03-02-PLAN.md (2026-03-16) — popup UI with useCurrentTab, BookmarkCard, App.tsx save/unsave toggle, Sonner toasts, pending toast recovery. All 8 manual checkpoint tests verified. Phase 3 complete.
-**Next action:** Begin Phase 4 (Settings + Onboarding) planning
+**Last action:** Completed 04-01-PLAN.md (2026-03-16) — settings backend with SAVE_SETTINGS/GET_SETTINGS/VALIDATE_API_KEY message handlers, chrome.storage persistence, API key security boundary. 12 tests green.
+**Next action:** Execute Phase 4 Plan 02 (dashboard UI for settings)
 
 **To resume after context loss:**
 1. Read `.planning/ROADMAP.md` for phase structure and success criteria
@@ -143,4 +147,4 @@ Plans:  [███████   ] 7/? plans complete (Phase 1: 2/2, Phase 2: 2/
 ---
 
 *State initialized: 2026-03-06*
-*Last updated: 2026-03-16 after completing 03-02 auto tasks — popup UI implemented, all 56 tests GREEN, awaiting human-verify checkpoint*
+*Last updated: 2026-03-16 after completing 04-01 auto tasks — settings backend implemented, all 68 tests GREEN*
