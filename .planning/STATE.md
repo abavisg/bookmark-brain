@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 current_phase: 3
-current_plan: 00-complete
-status: in-progress
-last_updated: "2026-03-16T14:11:40.685Z"
+current_plan: 03-01 complete — awaiting plan 03-02
+status: executing
+last_updated: "2026-03-16T14:20:52.034Z"
 progress:
   total_phases: 10
   completed_phases: 2
   total_plans: 7
-  completed_plans: 5
+  completed_plans: 6
 ---
 
 # State: Bookmark Brain
@@ -33,13 +33,13 @@ progress:
 
 **Milestone:** v1
 **Current Phase:** 3
-**Current Plan:** 03-00 complete — awaiting plan 03-01
+**Current Plan:** 03-01 complete — awaiting plan 03-02
 **Status:** In progress
 
 **Progress Bar:**
 ```
 Phase:  [##        ] 2/10 phases complete
-Plans:  [#####     ] 5/? plans complete (Phase 1: 2/2, Phase 2: 2/2, Phase 3: 1/3)
+Plans:  [██████    ] 6/? plans complete (Phase 1: 2/2, Phase 2: 2/2, Phase 3: 2/3)
 ```
 
 ---
@@ -50,7 +50,7 @@ Plans:  [#####     ] 5/? plans complete (Phase 1: 2/2, Phase 2: 2/2, Phase 3: 1/
 |-------|------|--------|
 | 1 | Project Scaffold | Complete (2/2 plans) |
 | 2 | Data Layer + Processing Queue | Complete (2/2 plans) |
-| 3 | Bookmark Saving | In progress (1/3 plans) |
+| 3 | Bookmark Saving | In progress (2/3 plans) |
 | 4 | Settings + Onboarding | Not started |
 | 5 | AI Processing Pipeline | Not started |
 | 6 | Library + Basic Search | Not started |
@@ -63,9 +63,9 @@ Plans:  [#####     ] 5/? plans complete (Phase 1: 2/2, Phase 2: 2/2, Phase 3: 1/
 
 ## Performance Metrics
 
-**Plans completed:** 5
+**Plans completed:** 6
 **Plans failed:** 0
-**Requirements delivered:** 1/28 (SET-04)
+**Requirements delivered:** 5/28 (SET-04, SAVE-01, SAVE-02, SAVE-03, SAVE-04)
 **Phases completed:** 2/10
 
 | Phase | Plan | Duration | Tasks | Files |
@@ -75,6 +75,7 @@ Plans:  [#####     ] 5/? plans complete (Phase 1: 2/2, Phase 2: 2/2, Phase 3: 1/
 | 02 | 01 | ~600s | 2/2 | 11 |
 | 02 | 02 | ~600s | 2/2 | 4 |
 | 03 | 00 | 170s | 3/3 | 3 |
+| 03 | 01 | 357s | 2/2 | 8 |
 
 ## Accumulated Context
 
@@ -92,6 +93,8 @@ Plans:  [#####     ] 5/? plans complete (Phase 1: 2/2, Phase 2: 2/2, Phase 3: 1/
 - **TDD Wave 0 RED import strategy (Phase 3):** Test files import from non-existing modules — RED state is guaranteed at import resolution time. No need for stubs or `throw new Error` inside tests. Mirrors the "contract before code" TDD discipline.
 - **handleSaveBookmark signature with optional dbInstance (Phase 3):** Follows the established addBookmark/deleteBookmark injection pattern. Tests pass testDb; production uses default db singleton.
 - **App.test.tsx placeholder tests replaced (Phase 3):** Old tests tested a placeholder App.tsx that Plan 02 will replace entirely. Keeping them would create confusing mixed state.
+- **chrome.action mock in test setup (Phase 3, Plan 01):** vitest-chrome@0.1.0 only provides browserAction (MV2). MV3 action API is absent, so setup.ts manually mocks chrome.action with vi.fn() for all badge/icon methods.
+- **chrome.storage.local callbacks stubbed in setup.ts (Phase 3, Plan 01):** getOrCreateDeviceId() uses callback-style chrome.storage.local.get(). Without stub, vi.fn() never calls the callback, causing 5s test timeouts. Stubbing auto-calls callback with empty object.
 
 ### UI/Branding Decisions
 
@@ -124,8 +127,8 @@ Plans:  [#####     ] 5/? plans complete (Phase 1: 2/2, Phase 2: 2/2, Phase 3: 1/
 
 ## Session Continuity
 
-**Last action:** Completed 03-00-PLAN.md (2026-03-16) — Wave 0 TDD scaffolds: 3 test files with 16 failing tests for all bookmark-saving requirements
-**Next action:** Execute 03-01-PLAN.md (Wave 1 — implement handleSaveBookmark, Dexie v2 migration, logDeletedBookmark)
+**Last action:** Completed 03-01-PLAN.md (2026-03-16) — Dexie v2 migration + logDeletedBookmark + handleSaveBookmark/handleUnsaveBookmark + service worker wiring + Alt+Shift+S keyboard shortcut. All SAVE-01..04 tests GREEN.
+**Next action:** Execute 03-02-PLAN.md (Wave 1 — popup UI: Save/Unsave buttons, BookmarkCard, chrome:// guard)
 
 **To resume after context loss:**
 1. Read `.planning/ROADMAP.md` for phase structure and success criteria
@@ -136,4 +139,4 @@ Plans:  [#####     ] 5/? plans complete (Phase 1: 2/2, Phase 2: 2/2, Phase 3: 1/
 ---
 
 *State initialized: 2026-03-06*
-*Last updated: 2026-03-16 after completing 03-00 Wave 0 test scaffolds (16 RED tests across 3 files)*
+*Last updated: 2026-03-16 after completing 03-01 — bookmark save/unsave backend fully implemented (SAVE-01..04 GREEN)*
